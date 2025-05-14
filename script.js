@@ -22,11 +22,9 @@ function agruparCategoriasESubcategorias(produtos) {
 
 // adiciona no carrinho
 function adicionarAoCarrinho(id) {
- 
 }
 // renderiza os produtos no carrinhO
 function renderizarCarrinho() {
-  
 }
 
 // atualiza o total do carrinho
@@ -44,8 +42,22 @@ function atualizarTotalCarrinho() {
 
 
 // renderiza os produtos na tela principal
-function renderizarProdutosPrincipal(produtos) {
-  
+function renderizarProdutosPrincipal(produtos) {  
+  const lista = document.getElementById("mainProdutosLista");
+  lista.innerHTML = "";
+  let contador = 0;
+  produtos.forEach(prod =>{
+    const li = document.createElement("li");
+    li.innerHTML =` 
+    <img src="./img/${prod.foto}" alt="${prod.nome}">
+    <h3>${prod.nome}</h3>
+    <p>${prod.descricao}</p>
+    <p>${prod.preco.toFixed(2)}<p>
+    <button onclick=""adicionarAoCarrinho('${prod.id}')> Adicionar ao Carrinho </button>`
+    lista.appendChild(li);
+    contador++;
+  });
+    
 }
 
 
