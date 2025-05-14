@@ -22,46 +22,12 @@ function agruparCategoriasESubcategorias(produtos) {
 
 // adiciona no carrinho
 function adicionarAoCarrinho(id) {
-  const produto = colecaoProdutos.find(p => p.id === id);
-
-  if (produto) {
-    const produtoNoCarrinho = colecaoCarrinho.find(p => p.id === produto.id);
-    if (produtoNoCarrinho) {
-      produtoNoCarrinho.quantidade += 1;
-    } else {
-      colecaoCarrinho.push({ ...produto, quantidade: 1 });
-    }
-  }
-  renderizarCarrinho();
-  asideCart.classList.add("active");
+ 
 }
 // renderiza os produtos no carrinhO
 function renderizarCarrinho() {
   
-  const ul = document.querySelector(".cart-items");
-  let contadorTotal = 0;
-
-  ul.innerHTML = ""; 
-  colecaoCarrinho.forEach(produto => {
-  
-    const li = document.createElement("li");
-    li.setAttribute("data-id", produto.id);
-    li.innerHTML = `
-      <img src="./img/${produto.foto}" alt="${produto.nome}">
-      <div class="cart-info">
-        <h3>${produto.nome}</h3>
-        <p>Preço: R$ ${produto.preco.toFixed(2).replace('.', ',')}</p>
-        <p>Quantidade: ${produto.quantidade}</p>
-        <button class="btn-remover">Remover</button>
-      </div>
-    `;
-    ul.appendChild(li);
-    contadorTotal++;
-    
-  });
-  document.getElementById("quantProduto").textContent = `(${contadorTotal})`;
 }
-
 
 // atualiza o total do carrinho
 function atualizarTotalCarrinho() {
@@ -79,22 +45,7 @@ function atualizarTotalCarrinho() {
 
 // renderiza os produtos na tela principal
 function renderizarProdutosPrincipal(produtos) {
-  const lista = document.getElementById("mainProdutosLista");
-  lista.innerHTML = ""; 
-  let contador  = 0;
-
-  produtos.forEach(prod => {
-    const li = document.createElement("li");
-    li.innerHTML = `<img src="./img/${prod.foto}" alt="${prod.nome}">
-                    <h3>${prod.nome}</h3>
-                    <p>${prod.descricao}</p>
-                    <p>R$ ${prod.preco.toFixed(2)}</p>
-                    <button onclick="adicionarAoCarrinho('${prod.id}')">Adicionar ao Carrinho</button>`;
-    lista.appendChild(li);
-    contador++;
-  });
-  const totalProdutos = document.querySelector("#totalProdutos");
-  totalProdutos.innerHTML = `Total de produtos: ${contador}`;
+  
 }
 
 
